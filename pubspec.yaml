@@ -1,0 +1,25 @@
+name: metas_do_ano
+description: Aplicativo para cadastrar metas do ano - criado pelo ChatGPT
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.18.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  flutter_bloc: ^8.1.2
+  equatable: ^2.0.3
+  sqflite: ^2.2.7+1
+  path_provider: ^2.0.15
+  path: ^1.8.3
+  http: ^1.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
