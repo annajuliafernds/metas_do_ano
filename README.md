@@ -1,4 +1,4 @@
-# Metas do Ano - Flutter App (skeleton)
+# Metas do Ano - Flutter App 
 Projeto gerado automaticamente contendo a estrutura mínima do app "Metas do Ano".
 Conteúdo principal em `lib/`.
 
