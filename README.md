@@ -45,25 +45,12 @@ As metas podem ser acompanhadas de acordo com seu status:
 | ✅ Concluída     | Meta que foi alcançada              |
 | ❌ Não realizada | Meta que não foi concluída          |
 
----
 
-## 🖥️ Telas da aplicação
-
-O aplicativo possui diferentes telas para facilitar a organização das metas:
-
-* 🏠 **Tela inicial** — apresenta as metas cadastradas.
-* ➕ **Cadastro de meta** — permite adicionar uma nova meta.
-* ✏️ **Edição de meta** — permite alterar as informações de uma meta.
-* 👀 **Detalhes da meta** — apresenta todas as informações do objetivo.
-* 🔄 **Gerenciamento de status** — permite acompanhar e atualizar o andamento.
-
----
 
 ## 📁 Estrutura do projeto
 
 A aplicação segue uma organização por responsabilidades, facilitando a manutenção e evolução do código.
 
-```text
 lib/
 │
 ├── blocs/
