@@ -14,15 +14,6 @@ O projeto permite registrar metas, adicionar descrições, definir datas e acomp
 * 🗑️ Exclusão de metas
 * 💾 Persistência dos dados localmente
 
-## 🛠️ Tecnologias utilizadas
-
-* **Flutter** — desenvolvimento da aplicação
-* **Dart** — linguagem de programação
-* **Flutter BLoC** — gerenciamento de estado
-* **SQLite** — armazenamento local dos dados
-* **Android** — plataforma de execução
-* **Web** — suporte para execução no navegador
-
 ## 📁 Estrutura do projeto
 
 lib/
@@ -71,3 +62,13 @@ O aplicativo foi desenvolvido como um projeto acadêmico para praticar conceitos
 ## 👩‍💻 Desenvolvimento
 
 Projeto desenvolvido para fins acadêmicos.
+
+## 🛠️ Tecnologias utilizadas
+
+* **Flutter** — framework utilizado para desenvolvimento do aplicativo
+* **Dart** — linguagem de programação
+* **Flutter BLoC** — gerenciamento de estado
+* **SQLite** — persistência local dos dados
+* **Android** — plataforma de execução
+* **Web** — suporte para execução no navegador
+
