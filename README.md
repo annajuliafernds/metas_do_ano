@@ -52,30 +52,46 @@ As metas podem ser acompanhadas de acordo com seu status:
 A aplicação segue uma organização por responsabilidades, facilitando a manutenção e evolução do código.
 
 lib/
-│
+
 ├── blocs/
 │   └── goal/
+
 │       ├── goal_bloc.dart
+
 │       ├── goal_event.dart
+
 │       └── goal_state.dart
+
 │
 ├── data/
+
 │   └── ...
+
 │
 ├── models/
+
 │   └── ...
+
 │
 ├── screens/
+
 │   └── ...
+
 │
 ├── utils/
+
 │   └── ...
+
 │
 ├── widgets/
+
 │   └── ...
+
 │
 ├── app.dart
+
 └── main.dart
+
 ```
 
 ### 📦 Principais diretórios
