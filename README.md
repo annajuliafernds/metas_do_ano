@@ -14,9 +14,12 @@ O projeto permite registrar metas, adicionar descrições, definir datas e acomp
 * 🗑️ Exclusão de metas
 * 💾 Persistência dos dados localmente
 
-## 📁 Estrutura do projeto
+📁 Organização do projeto
+
+A pasta lib/ concentra o código principal da aplicação e está organizada da seguinte forma:
 
 lib/
+
 ├── blocs/
 
 │   └── goal/
@@ -35,7 +38,15 @@ lib/
 
 └── main.dart
 
+Principais diretórios
+blocs/goal — contém a lógica de gerenciamento do estado relacionada às metas.
+data — responsável pelos dados e pela persistência da aplicação.
+models — contém os modelos utilizados pelo aplicativo.
+screens — reúne as telas da aplicação.
+utils — contém classes e funções auxiliares.
+widgets — reúne componentes reutilizáveis da interface.
 
+O arquivo main.dart é o ponto de entrada da aplicação, enquanto app.dart concentra a configuração principal do aplicativo.
 
 ## 🚀 Como executar
 
