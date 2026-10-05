@@ -7,7 +7,7 @@ import '../blocs/goal/goal_event.dart';
 class AddEditGoalScreen extends StatefulWidget {
   final Goal? goal; // Recebe uma meta para edição, ou null para criação
 
-  AddEditGoalScreen({this.goal});
+  const AddEditGoalScreen({super.key, this.goal});
 
   @override
   State<AddEditGoalScreen> createState() => _AddEditGoalScreenState();
@@ -17,9 +17,9 @@ class _AddEditGoalScreenState extends State<AddEditGoalScreen> {
   final _formKey = GlobalKey<FormState>(); // Chave para validar o formulário
 
   late TextEditingController _titleCtrl; // Controlador para o campo título
-  late TextEditingController _descCtrl;  // Controlador para o campo descrição
-  String _status = 'em_andamento';        // Status padrão da meta
-  DateTime? _target;                      // Prazo (data) da meta
+  late TextEditingController _descCtrl; // Controlador para o campo descrição
+  String _status = 'em_andamento'; // Status padrão da meta
+  DateTime? _target; // Prazo (data) da meta
 
   @override
   void initState() {
@@ -72,11 +72,10 @@ class _AddEditGoalScreenState extends State<AddEditGoalScreen> {
                   // Dropdown para escolher o status da meta
                   Expanded(
                     child: DropdownButtonFormField<String>(
-                      value: _status,
+                      initialValue: _status,
                       items: [
                         DropdownMenuItem(
-                            value: 'em_andamento',
-                            child: Text('Em andamento')),
+                            value: 'em_andamento', child: Text('Em andamento')),
                         DropdownMenuItem(
                             value: 'concluida', child: Text('Concluída')),
                         DropdownMenuItem(
@@ -110,10 +109,8 @@ class _AddEditGoalScreenState extends State<AddEditGoalScreen> {
                       final d = await showDatePicker(
                         context: context,
                         initialDate: _target ?? DateTime.now(),
-                        firstDate:
-                            DateTime.now().subtract(Duration(days: 365)),
-                        lastDate:
-                            DateTime.now().add(Duration(days: 365 * 5)),
+                        firstDate: DateTime.now().subtract(Duration(days: 365)),
+                        lastDate: DateTime.now().add(Duration(days: 365 * 5)),
                       );
                       if (d != null) setState(() => _target = d);
                     },
@@ -133,8 +130,7 @@ class _AddEditGoalScreenState extends State<AddEditGoalScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
                     foregroundColor: Colors.white,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                   ),
                   onPressed: () {
                     // Valida o formulário antes de prosseguir

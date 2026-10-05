@@ -8,7 +8,7 @@ import '../blocs/goal/goal_event.dart';
 class GoalDetailScreen extends StatelessWidget {
   final Goal goal; // Meta que será exibida nos detalhes
 
-  GoalDetailScreen({required this.goal});
+  const GoalDetailScreen({super.key, required this.goal});
 
   @override
   Widget build(BuildContext context) {

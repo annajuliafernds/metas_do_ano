@@ -7,7 +7,7 @@ class GoalTile extends StatelessWidget {
   final VoidCallback onTap;
   final VoidCallback? onLongPress;
 
-  const GoalTile({required this.goal, required this.onTap, this.onLongPress});
+  const GoalTile({super.key, required this.goal, required this.onTap, this.onLongPress});
 
   Color _statusColor(String status) {
     switch (status) {
@@ -30,7 +30,7 @@ class GoalTile extends StatelessWidget {
         trailing: Container(
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
           decoration: BoxDecoration(
-            color: _statusColor(goal.status).withOpacity(0.15),
+            color: _statusColor(goal.status).withValues(alpha: 0.15),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Text(

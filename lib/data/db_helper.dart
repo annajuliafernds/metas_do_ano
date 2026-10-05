@@ -3,7 +3,6 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';                      
 import '../models/goal.dart';                         
 import 'package:path_provider/path_provider.dart';   
-import 'dart:io';
 
 class DBHelper {
   // Singleton para garantir uma única instância do DBHelper durante o app
