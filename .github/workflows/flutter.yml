@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - ci/github-actions
+      - feat/detecta-codigo-deprecado
   pull_request:
     branches:
       - main
