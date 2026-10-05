@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - ci/github-actions
+      - feat/detecta-codigo-deprecado
   pull_request:
     branches:
       - main
@@ -25,6 +26,15 @@ jobs:
 
       - name: Instalar dependências
         run: flutter pub get
+
+      - name: Detectar código depreciado
+        run: |
+          flutter analyze 2>&1 | tee analyze.log
+          if grep -q "deprecated_member_use" analyze.log; then
+            echo "Código depreciado encontrado."
+            exit 1
+          fi
+          echo "Nenhum código depreciado encontrado."
 
       - name: Gerar build
         run: flutter build apk --debug
