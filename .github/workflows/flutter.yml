@@ -6,6 +6,7 @@ on:
       - main
       - ci/github-actions
       - feat/detecta-codigo-deprecado
+      - feat/padrao-codificacao
   pull_request:
     branches:
       - main
