@@ -1,3 +1,4 @@
+
 name: Flutter CI
 
 on:
@@ -7,6 +8,7 @@ on:
       - ci/github-actions
       - feat/detecta-codigo-deprecado
       - feat/padrao-codificacao
+      - feat/detector-codigo-duplicado
   pull_request:
     branches:
       - main
@@ -25,10 +27,21 @@ jobs:
           flutter-version: '3.44.0'
           channel: stable
 
-      - name: Instalar dependências
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependências Node.js
+        run: npm ci
+
+      - name: Detectar código duplicado
+        run: npm run detect-duplicates
+
+      - name: Instalar dependências Flutter
         run: flutter pub get
 
-      - name: Verificar padroes de codificacao
+      - name: Verificar padrões de codificação
         run: flutter analyze --fatal-infos --fatal-warnings
 
       - name: Detectar código depreciado

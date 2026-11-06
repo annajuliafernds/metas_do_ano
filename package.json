@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "jscpd": "^5.4.2"
+  },
+  "scripts": {
+    "detect-duplicates": "jscpd lib --min-lines 5 --min-tokens 40 --threshold 0"
+  }
+}
