@@ -28,6 +28,9 @@ jobs:
       - name: Instalar dependências
         run: flutter pub get
 
+      - name: Verificar padroes de codificacao
+        run: flutter analyze --fatal-infos --fatal-warnings
+
       - name: Detectar código depreciado
         run: |
           flutter analyze 2>&1 | tee analyze.log

@@ -13,7 +13,7 @@ class GoalTile extends StatelessWidget {
     switch (status) {
       case 'concluida': return Colors.green;
       case 'nao_realizada': return Colors.red;
-      default: return COLOR_LIGHT_BLUE;
+      default: return colorLightBlue;
     }
   }
 

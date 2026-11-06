@@ -79,12 +79,15 @@ class GoalDetailScreen extends StatelessWidget {
                     onPressed: () async {
                       // Navega para a tela de criação/edição passando a meta atual
                       await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => AddEditGoalScreen(goal: goal),
-                        ),
-                      );
-                      Navigator.pop(context); // Volta para a lista após editar
+                      context,
+                      MaterialPageRoute(
+                      builder: (_) => AddEditGoalScreen(goal: goal),
+  ),
+);
+
+if (!context.mounted) return;
+
+Navigator.pop(context);
                     },
                   ),
                 ),

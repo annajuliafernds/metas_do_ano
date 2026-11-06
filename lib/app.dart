@@ -3,15 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'utils/constants.dart';
 import 'data/db_helper.dart';
 import 'data/goal_repository.dart';
-// import 'data/api_service.dart';
 import 'blocs/goal/goal_bloc.dart';
 import 'blocs/goal/goal_event.dart';
 import 'screens/home_screen.dart';
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    final repo = GoalRepository(db: DBHelper.instance, api: null );
+    final repo = GoalRepository(db: DBHelper.instance, api: null);
 
     return RepositoryProvider.value(
       value: repo,
@@ -21,24 +22,28 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Metas do Ano',
           theme: ThemeData(
-            primaryColor: COLOR_LILAC,
+            primaryColor: colorLilac,
             scaffoldBackgroundColor: Colors.white,
             appBarTheme: AppBarTheme(
-              backgroundColor: COLOR_LILAC,
+              backgroundColor: colorLilac,
               elevation: 0,
               centerTitle: true,
             ),
             colorScheme: ColorScheme.fromSwatch().copyWith(
-              secondary: COLOR_LIGHT_BLUE,
-              primary: COLOR_LILAC,
+              secondary: colorLightBlue,
+              primary: colorLilac,
             ),
             inputDecorationTheme: InputDecorationTheme(
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
             ),
             elevatedButtonTheme: ElevatedButtonThemeData(
               style: ElevatedButton.styleFrom(
-                backgroundColor: COLOR_LILAC,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                backgroundColor: colorLilac,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
             ),
           ),
