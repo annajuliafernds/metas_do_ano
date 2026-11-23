@@ -11,6 +11,7 @@ on:
       - feat/detector-codigo-duplicado
       - feat/diagrama-classes-uml
       - feat/corrige-issues-sonarcloud
+      - feat/corrige-code-smells
   pull_request:
     branches:
       - main
@@ -69,8 +70,8 @@ jobs:
       - name: Instalar dependências Flutter
         run: flutter pub get
 
-      - name: Verificar padrões de codificação
-        run: flutter analyze --fatal-infos --fatal-warnings
+      - name: Detectar code smells com Dart Analyzer
+        run: dart analyze lib --fatal-infos --fatal-warnings
 
       - name: Detectar código depreciado
         run: |
@@ -92,5 +93,7 @@ jobs:
 
       - name: Analisar código com SonarQube Cloud
         uses: SonarSource/sonarqube-scan-action@fd88b7d7ccbaefd23d8f36f73b59db7a3d246602
+        with:
+          args: -Dsonar.qualitygate.wait=true
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

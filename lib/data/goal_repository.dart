@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../models/goal.dart';
 import 'db_helper.dart';
 import 'api_service.dart';
@@ -12,20 +14,40 @@ class GoalRepository {
 
   Future<Goal> add(Goal g) async {
     final created = await db.createGoal(g);
-    if (api != null) {
+    final apiService = api;
+    if (apiService != null) {
       try {
-        await api!.syncGoal(created);
-      } catch (_) {}
+        final synced = await apiService.syncGoal(created);
+        if (!synced) {
+          log('API rejected the new goal during synchronization.');
+        }
+      } on Exception catch (error, stackTrace) {
+        log(
+          'Could not synchronize the new goal.',
+          error: error,
+          stackTrace: stackTrace,
+        );
+      }
     }
     return created;
   }
 
   Future<int> update(Goal g) async {
     final res = await db.updateGoal(g);
-    if (api != null) {
+    final apiService = api;
+    if (apiService != null) {
       try {
-        await api!.syncGoal(g);
-      } catch (_) {}
+        final synced = await apiService.syncGoal(g);
+        if (!synced) {
+          log('API rejected the updated goal during synchronization.');
+        }
+      } on Exception catch (error, stackTrace) {
+        log(
+          'Could not synchronize the updated goal.',
+          error: error,
+          stackTrace: stackTrace,
+        );
+      }
     }
     return res;
   }

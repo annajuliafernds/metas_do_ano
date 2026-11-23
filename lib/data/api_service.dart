@@ -9,8 +9,10 @@ class ApiService {
   Future<List<Goal>> fetchGoals() async {
     final res = await http.get(Uri.parse('$baseUrl/goals'));
     if (res.statusCode == 200) {
-      final List data = jsonDecode(res.body);
-      return data.map((e) => Goal.fromMap(e)).toList();
+      final data = jsonDecode(res.body) as List<dynamic>;
+      return data
+          .map((goal) => Goal.fromMap(goal as Map<String, dynamic>))
+          .toList();
     } else {
       throw Exception('Failed to load goals');
     }
