@@ -1,8 +1,10 @@
 {
   "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^12.2.0",
     "jscpd": "^5.4.2"
   },
   "scripts": {
-    "detect-duplicates": "jscpd lib --min-lines 5 --min-tokens 40 --threshold 0"
+    "detect-duplicates": "jscpd lib --min-lines 5 --min-tokens 40 --threshold 0",
+    "generate-uml": "diagram_generator --input . --output-dir docs/uml --prefix metas_do_ano --format mermaid --no-external && node scripts/ajustar-diagrama-uml.js && npx mmdc -i docs/uml/mermaid/metas_do_ano_parse_diagram.mmd -o docs/uml/images/metas_do_ano_uml.png"
   }
 }
