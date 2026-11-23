@@ -10,6 +10,8 @@ on:
       - feat/padrao-codificacao
       - feat/detector-codigo-duplicado
       - feat/diagrama-classes-uml
+      - feat/corrige-issues-sonarcloud
+      - feat/corrige-code-smells
   pull_request:
     branches:
       - main
@@ -20,10 +22,12 @@ jobs:
 
     steps:
       - name: Checkout do código
-        uses: actions/checkout@v4
-      
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+
       - name: Configurar Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@c1e323688fd81a25caa38c78aa6df2d33d3e20d9
         with:
           distribution: 'temurin'
           java-version: '17'  
@@ -32,13 +36,13 @@ jobs:
         run: java -version
 
       - name: Configurar Flutter
-        uses: subosito/flutter-action@v2
+        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2
         with:
           flutter-version: '3.44.0'
           channel: stable
 
       - name: Configurar Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '20'
 
@@ -57,7 +61,7 @@ jobs:
         run: npm run generate-uml
 
       - name: Salvar imagem UML como artefato
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: diagrama-uml
           path: docs/uml/images/metas_do_ano_uml.png
@@ -66,8 +70,8 @@ jobs:
       - name: Instalar dependências Flutter
         run: flutter pub get
 
-      - name: Verificar padrões de codificação
-        run: flutter analyze --fatal-infos --fatal-warnings
+      - name: Detectar code smells com Dart Analyzer
+        run: dart analyze lib --fatal-infos --fatal-warnings
 
       - name: Detectar código depreciado
         run: |
@@ -80,3 +84,16 @@ jobs:
 
       - name: Gerar build
         run: flutter build apk --debug
+
+      - name: Configurar Java 21 para SonarQube
+        uses: actions/setup-java@c1e323688fd81a25caa38c78aa6df2d33d3e20d9
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Analisar código com SonarQube Cloud
+        uses: SonarSource/sonarqube-scan-action@fd88b7d7ccbaefd23d8f36f73b59db7a3d246602
+        with:
+          args: -Dsonar.qualitygate.wait=true
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

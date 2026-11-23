@@ -30,7 +30,7 @@ class DBHelper {
   }
 
   // Método que cria a tabela 'goals' no banco de dados
-  Future _createDB(Database db, int version) async {
+  Future<void> _createDB(Database db, int version) async {
     await db.execute('''
       CREATE TABLE goals(
         id INTEGER PRIMARY KEY AUTOINCREMENT,   -- ID auto incremental
@@ -80,8 +80,8 @@ class DBHelper {
   }
 
   // Método para fechar a conexão com o banco de dados
-  Future close() async {
+  Future<void> close() async {
     final db = await instance.database;
-    db.close();
+    await db.close();
   }
 }
