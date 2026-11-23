@@ -9,6 +9,7 @@ on:
       - feat/detecta-codigo-deprecado
       - feat/padrao-codificacao
       - feat/detector-codigo-duplicado
+      - feat/diagrama-classes-uml
   pull_request:
     branches:
       - main
@@ -20,6 +21,15 @@ jobs:
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
+      
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'  
+      
+      - name: Verificar versão do Java
+        run: java -version
 
       - name: Configurar Flutter
         uses: subosito/flutter-action@v2
@@ -35,8 +45,23 @@ jobs:
       - name: Instalar dependências Node.js
         run: npm ci
 
+      - name: Instalar gerador de diagramas UML
+        run: |
+          dart pub global activate diagram_dart 0.4.0
+          echo "$HOME/.pub-cache/bin" >> "$GITHUB_PATH"
+
       - name: Detectar código duplicado
         run: npm run detect-duplicates
+
+      - name: Gerar diagrama UML
+        run: npm run generate-uml
+
+      - name: Salvar imagem UML como artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: diagrama-uml
+          path: docs/uml/images/metas_do_ano_uml.png
+          if-no-files-found: error
 
       - name: Instalar dependências Flutter
         run: flutter pub get

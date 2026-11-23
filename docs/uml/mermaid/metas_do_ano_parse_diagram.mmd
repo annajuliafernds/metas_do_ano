@@ -1,0 +1,45 @@
+classDiagram
+  class ApiService {
+    <<class>>
+    📁 api_service.dart
+    Future<List<Goal>> fetchGoals()
+    Future<bool> syncGoal(Goal g)
+  }
+  class DBHelper {
+    <<class>>
+    📁 db_helper.dart
+    Future<Database> database()
+    Future<Database> _initDB(String filePath)
+    Future _createDB(Database db, int version)
+    Future<Goal> createGoal(Goal goal)
+    Future<List<Goal>> readAllGoals()
+    Future<int> updateGoal(Goal goal)
+    Future<int> deleteGoal(int id)
+    Future close()
+  }
+  class GoalRepository {
+    <<class>>
+    📁 goal_repository.dart
+    Future<List<Goal>> getAll()
+    Future<Goal> add(Goal g)
+    Future<int> update(Goal g)
+    Future<int> delete(int id)
+  }
+  class Goal {
+    <<class>>
+    📁 goal.dart
+    int? id
+    String title
+    String? description
+    String status
+    DateTime createdAt
+    DateTime? targetDate
+    Map<String, dynamic> toMap()
+  }
+
+  ApiService --> Goal : uses
+
+  DBHelper --> Goal : uses
+  GoalRepository --> ApiService : uses
+  GoalRepository --> DBHelper : uses
+  GoalRepository --> Goal : uses
