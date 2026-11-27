@@ -11,6 +11,7 @@ on:
       - feat/detector-codigo-duplicado
       - feat/diagrama-classes-uml
       - feat/detecta-code-smells
+      - feat/detecta-conformidade-camadas
   pull_request:
     branches:
       - main
@@ -66,6 +67,9 @@ jobs:
 
       - name: Instalar dependências Flutter
         run: flutter pub get
+
+      - name: Verificar conformidade das camadas
+        run: dart run architecture_linter:analyzer analyze lib --set-exit-on-severity-level=warning
 
       - name: Detectar Code Smells com Dart Analyzer
         run: dart analyze --fatal-warnings
