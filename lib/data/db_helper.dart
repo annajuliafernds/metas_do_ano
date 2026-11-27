@@ -29,16 +29,16 @@ class DBHelper {
     );
   }
 
-  // Método que cria a tabela 'goals' no banco de dados
-  Future _createDB(Database db, int version) async {
+   // Método que cria a tabela 'goals' no banco de dados
+  Future<void> _createDB(Database db, int version) async {
     await db.execute('''
       CREATE TABLE goals(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,   -- ID auto incremental
-        title TEXT NOT NULL,                     -- Título obrigatório
-        description TEXT,                        -- Descrição opcional
-        status TEXT NOT NULL,                    -- Status obrigatório
-        createdAt TEXT NOT NULL,                 -- Data de criação (texto)
-        targetDate TEXT                         -- Data de prazo (texto, opcional)
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        description TEXT,
+        status TEXT NOT NULL,
+        createdAt TEXT NOT NULL,
+        targetDate TEXT
       )
     ''');
   }
@@ -79,9 +79,9 @@ class DBHelper {
     );
   }
 
-  // Método para fechar a conexão com o banco de dados
-  Future close() async {
+     // Método para fechar a conexão com o banco de dados
+  Future<void> close() async {
     final db = await instance.database;
-    db.close();
+    await db.close();
   }
 }
