@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app.dart';
+import 'package:metas_do_ano/app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

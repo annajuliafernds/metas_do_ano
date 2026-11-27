@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../models/goal.dart';
+import 'package:metas_do_ano/models/goal.dart';
 
 class ApiService {
   final String baseUrl;
