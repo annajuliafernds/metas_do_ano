@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:sqflite/sqflite.dart';               
 import 'package:path/path.dart';                      
-import '../models/goal.dart';                         
+import 'package:metas_do_ano/models/goal.dart';                         
 import 'package:path_provider/path_provider.dart';   
 
 class DBHelper {

@@ -1,12 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../blocs/goal/goal_bloc.dart';
-import '../blocs/goal/goal_event.dart';
-import '../blocs/goal/goal_state.dart';
-import '../widgets/goal_tile.dart';
-import 'add_edit_goal_screen.dart';
-import 'goal_detail_screen.dart';
+import 'package:metas_do_ano/blocs/goal/goal_bloc.dart';
+import 'package:metas_do_ano/blocs/goal/goal_event.dart';
+import 'package:metas_do_ano/blocs/goal/goal_state.dart';
+import 'package:metas_do_ano/widgets/goal_tile.dart';
+import 'package:metas_do_ano/screens/add_edit_goal_screen.dart';
+import 'package:metas_do_ano/screens/goal_detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

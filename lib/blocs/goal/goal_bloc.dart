@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'goal_event.dart';       // Eventos que o BLoC pode receber
-import 'goal_state.dart';       // Estados que o BLoC pode emitir
-import '../../data/goal_repository.dart';  // Repositório para acessar dados (DB, API, etc.)
+import 'package:metas_do_ano/blocs/goal/goal_event.dart';       // Eventos que o BLoC pode receber
+import 'package:metas_do_ano/blocs/goal/goal_state.dart';       // Estados que o BLoC pode emitir
+import 'package:metas_do_ano/data/goal_repository.dart';  // Repositório para acessar dados (DB, API, etc.)
 
 class GoalBloc extends Bloc<GoalEvent, GoalState> {
   final GoalRepository repo;  // Repositório para manipular metas

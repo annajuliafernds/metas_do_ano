@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';  // Para facilitar comparação dos estados
-import '../../models/goal.dart';             // Modelo Goal
+import 'package:metas_do_ano/models/goal.dart';             // Modelo Goal
 
 // Classe base abstrata para os estados relacionados a metas
 abstract class GoalState extends Equatable {

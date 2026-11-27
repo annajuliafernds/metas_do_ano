@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/goal.dart';
-import '../utils/constants.dart';
+import 'package:metas_do_ano/models/goal.dart';
+import 'package:metas_do_ano/utils/constants.dart';
 
 class GoalTile extends StatelessWidget {
   final Goal goal;

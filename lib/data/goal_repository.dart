@@ -1,6 +1,6 @@
-import '../models/goal.dart';
-import 'db_helper.dart';
-import 'api_service.dart';
+import 'package:metas_do_ano/data/api_service.dart';
+import 'package:metas_do_ano/data/db_helper.dart';
+import 'package:metas_do_ano/models/goal.dart';
 
 class GoalRepository {
   final DBHelper db;

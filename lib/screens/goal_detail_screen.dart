@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
-import 'add_edit_goal_screen.dart';
-import '../models/goal.dart';
+import 'package:metas_do_ano/screens/add_edit_goal_screen.dart';
+import 'package:metas_do_ano/models/goal.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../blocs/goal/goal_bloc.dart';
-import '../blocs/goal/goal_event.dart';
+import 'package:metas_do_ano/blocs/goal/goal_bloc.dart';
+import 'package:metas_do_ano/blocs/goal/goal_event.dart';
 
 class GoalDetailScreen extends StatelessWidget {
   final Goal goal;
