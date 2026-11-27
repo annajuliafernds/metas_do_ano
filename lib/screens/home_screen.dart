@@ -27,36 +27,36 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Metas do Ano'),
+        title: const Text('Metas do Ano'),
         backgroundColor: Colors.purple,
       ),
       body: Padding(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         child: Column(
           children: [
             // Linha com título e botão para adicionar uma nova meta
             Row(
               children: [
-                Expanded(
-                  child: Text(
+                const Expanded(
+                  child: const Text(
                     'Minhas metas',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
                 ElevatedButton.icon(
-                  icon: Icon(Icons.add),
-                  label: Text('Adicionar Meta'),
+                  icon: const Icon(Icons.add),
+                  label: const Text('Adicionar Meta'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
                     foregroundColor: Colors.white,
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       horizontal: 16,
                       vertical: 12,
                     ),
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
 
             // Botões para filtrar metas pelo status
             ToggleButtons(
@@ -100,47 +100,47 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.black87,
               selectedBorderColor: Colors.purple,
               children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
+                const Padding(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 12,
                     vertical: 8,
                   ),
-                  child: Text(
+                  child: const Text(
                     'Em andamento',
-                    style: TextStyle(fontSize: 14),
+                    style: const TextStyle(fontSize: 14),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
+                const Padding(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 12,
                     vertical: 8,
                   ),
-                  child: Text(
+                  child: const Text(
                     'Concluídas',
-                    style: TextStyle(fontSize: 14),
+                    style: const TextStyle(fontSize: 14),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
+                const Padding(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 12,
                     vertical: 8,
                   ),
-                  child: Text(
+                  child: const Text(
                     'Não realizada',
-                    style: TextStyle(fontSize: 14),
+                    style: const TextStyle(fontSize: 14),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
 
             // Lista de metas que ocupa o restante da tela
             Expanded(
               child: BlocBuilder<GoalBloc, GoalState>(
                 builder: (context, state) {
                   if (state is GoalLoading) {
-                    return Center(
-                      child: CircularProgressIndicator(),
+                    return const Center(
+                      child: const CircularProgressIndicator(),
                     );
                   }
 
@@ -159,8 +159,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         .toList();
 
                     if (filtered.isEmpty) {
-                      return Center(
-                        child: Text('Nenhuma meta aqui. Crie uma!'),
+                      return const Center(
+                        child: const Text('Nenhuma meta aqui. Crie uma!'),
                       );
                     }
 
@@ -191,11 +191,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             showDialog(
                               context: context,
                               builder: (_) => AlertDialog(
-                                title: Text('Deletar meta?'),
+                                title: const Text('Deletar meta?'),
                                 actions: [
                                   TextButton(
                                     onPressed: () => Navigator.pop(context),
-                                    child: Text('Cancelar'),
+                                    child: const Text('Cancelar'),
                                   ),
                                   TextButton(
                                     onPressed: () {
@@ -206,7 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                                       Navigator.pop(context);
                                     },
-                                    child: Text('Deletar'),
+                                    child: const Text('Deletar'),
                                   ),
                                 ],
                               ),
@@ -217,7 +217,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   }
 
-                  return SizedBox();
+                  return const SizedBox();
                 },
               ),
             ),

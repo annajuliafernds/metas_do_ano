@@ -25,10 +25,10 @@ class GoalTile extends StatelessWidget {
       child: ListTile(
         onTap: onTap,
         onLongPress: onLongPress,
-        title: Text(goal.title, style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(goal.title, style: const TextStyle(fontWeight: FontWeight.bold)),
         subtitle: goal.targetDate != null ? Text('Prazo: ${goal.targetDate!.toLocal().toString().split(' ')[0]}') : null,
         trailing: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
           decoration: BoxDecoration(
             color: _statusColor(goal.status).withValues(alpha: 0.15),
             borderRadius: BorderRadius.circular(20),

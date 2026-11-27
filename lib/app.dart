@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primaryColor: colorLilac,
             scaffoldBackgroundColor: Colors.white,
-            appBarTheme: AppBarTheme(
+            appBarTheme: const AppBarTheme(
               backgroundColor: colorLilac,
               elevation: 0,
               centerTitle: true,
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ),
-          home: HomeScreen(),
+          home: const HomeScreen(),
         ),
       ),
     );
