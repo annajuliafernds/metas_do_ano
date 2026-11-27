@@ -6,3 +6,52 @@ analyzer:
     - build/**
     - android/**
     - web/**
+
+architecture_linter:
+  lint_severity: error
+  layers:
+    - &composition
+      name: Composition
+      path: '(main|app)\.dart'
+    - &presentation
+      name: Presentation
+      path: '(screens|widgets)'
+    - &application
+      name: Application
+      path: '(blocs)'
+    - &data
+      name: Data
+      path: '(data)'
+    - &domain
+      name: Domain
+      path: '(models)'
+    - &shared
+      name: Shared
+      path: '(utils)'
+  banned_imports:
+    - layer: *presentation
+      banned:
+        - *composition
+        - *data
+    - layer: *application
+      banned:
+        - *composition
+        - *presentation
+    - layer: *data
+      banned:
+        - *composition
+        - *presentation
+        - *application
+    - layer: *domain
+      banned:
+        - *composition
+        - *presentation
+        - *application
+        - *data
+    - layer: *shared
+      banned:
+        - *composition
+        - *presentation
+        - *application
+        - *data
+        - *domain
