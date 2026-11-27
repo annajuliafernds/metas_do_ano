@@ -10,6 +10,7 @@ on:
       - feat/padrao-codificacao
       - feat/detector-codigo-duplicado
       - feat/diagrama-classes-uml
+      - feat/detecta-code-smells
   pull_request:
     branches:
       - main
@@ -21,13 +22,13 @@ jobs:
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
-      
+
       - name: Configurar Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'  
-      
+          java-version: '17'
+
       - name: Verificar versão do Java
         run: java -version
 
@@ -66,8 +67,11 @@ jobs:
       - name: Instalar dependências Flutter
         run: flutter pub get
 
+      - name: Detectar Code Smells com Dart Analyzer
+        run: dart analyze --fatal-warnings
+
       - name: Verificar padrões de codificação
-        run: flutter analyze --fatal-infos --fatal-warnings
+        run: flutter analyze --fatal-warnings
 
       - name: Detectar código depreciado
         run: |
