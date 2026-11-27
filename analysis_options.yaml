@@ -1,57 +1,83 @@
 
 include: package:very_good_analysis/analysis_options.yaml
 
+plugins:
+  import_lint: 2.0.0
+
 analyzer:
   exclude:
     - build/**
     - android/**
     - web/**
 
-architecture_linter:
-  lint_severity: error
-  layers:
-    - &composition
-      name: Composition
-      path: '(main|app)\.dart'
-    - &presentation
-      name: Presentation
-      path: '(screens|widgets)'
-    - &application
-      name: Application
-      path: '(blocs)'
-    - &data
-      name: Data
-      path: '(data)'
-    - &domain
-      name: Domain
-      path: '(models)'
-    - &shared
-      name: Shared
-      path: '(utils)'
-  banned_imports:
-    - layer: *presentation
-      banned:
-        - *composition
-        - *data
-    - layer: *application
-      banned:
-        - *composition
-        - *presentation
-    - layer: *data
-      banned:
-        - *composition
-        - *presentation
-        - *application
-    - layer: *domain
-      banned:
-        - *composition
-        - *presentation
-        - *application
-        - *data
-    - layer: *shared
-      banned:
-        - *composition
-        - *presentation
-        - *application
-        - *data
-        - *domain
+import_lint:
+  severity: error
+  rules:
+    presentation_cannot_import_data:
+      target: "package:metas_do_ano/{screens,widgets}/**.dart"
+      from: "package:metas_do_ano/data/**.dart"
+      except: []
+    presentation_cannot_import_composition:
+      target: "package:metas_do_ano/{screens,widgets}/**.dart"
+      from: "package:metas_do_ano/{main,app}.dart"
+      except: []
+    application_cannot_import_presentation:
+      target: "package:metas_do_ano/blocs/**.dart"
+      from: "package:metas_do_ano/{screens,widgets}/**.dart"
+      except: []
+    application_cannot_import_composition:
+      target: "package:metas_do_ano/blocs/**.dart"
+      from: "package:metas_do_ano/{main,app}.dart"
+      except: []
+    data_cannot_import_application:
+      target: "package:metas_do_ano/data/**.dart"
+      from: "package:metas_do_ano/blocs/**.dart"
+      except: []
+    data_cannot_import_presentation:
+      target: "package:metas_do_ano/data/**.dart"
+      from: "package:metas_do_ano/{screens,widgets}/**.dart"
+      except: []
+    data_cannot_import_composition:
+      target: "package:metas_do_ano/data/**.dart"
+      from: "package:metas_do_ano/{main,app}.dart"
+      except: []
+    domain_cannot_import_data:
+      target: "package:metas_do_ano/models/**.dart"
+      from: "package:metas_do_ano/data/**.dart"
+      except: []
+    domain_cannot_import_application:
+      target: "package:metas_do_ano/models/**.dart"
+      from: "package:metas_do_ano/blocs/**.dart"
+      except: []
+    domain_cannot_import_presentation:
+      target: "package:metas_do_ano/models/**.dart"
+      from: "package:metas_do_ano/{screens,widgets}/**.dart"
+      except: []
+    domain_cannot_import_composition:
+      target: "package:metas_do_ano/models/**.dart"
+      from: "package:metas_do_ano/{main,app}.dart"
+      except: []
+    domain_cannot_import_shared:
+      target: "package:metas_do_ano/models/**.dart"
+      from: "package:metas_do_ano/utils/**.dart"
+      except: []
+    shared_cannot_import_domain:
+      target: "package:metas_do_ano/utils/**.dart"
+      from: "package:metas_do_ano/models/**.dart"
+      except: []
+    shared_cannot_import_data:
+      target: "package:metas_do_ano/utils/**.dart"
+      from: "package:metas_do_ano/data/**.dart"
+      except: []
+    shared_cannot_import_application:
+      target: "package:metas_do_ano/utils/**.dart"
+      from: "package:metas_do_ano/blocs/**.dart"
+      except: []
+    shared_cannot_import_presentation:
+      target: "package:metas_do_ano/utils/**.dart"
+      from: "package:metas_do_ano/{screens,widgets}/**.dart"
+      except: []
+    shared_cannot_import_composition:
+      target: "package:metas_do_ano/utils/**.dart"
+      from: "package:metas_do_ano/{main,app}.dart"
+      except: []

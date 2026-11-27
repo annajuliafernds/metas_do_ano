@@ -53,9 +53,9 @@ composição.
 
 Para evitar referências circulares entre camadas, mantenha essas dependências
 unidirecionais: camadas inferiores não importam camadas superiores. O
-`architecture_linter` verifica as importações entre essas fronteiras no CLI e
-no pipeline. Ao criar um novo módulo, classifique-o em uma camada e mantenha
-suas dependências dentro da lista permitida.
+`import_lint` verifica as importações entre essas fronteiras no CLI e no
+pipeline. Ao criar um novo módulo, classifique-o em uma camada e mantenha suas
+dependências dentro da lista permitida.
 
 ## Executar o detector
 
@@ -63,9 +63,9 @@ O detector está listado como dependência de desenvolvimento. Para adicioná-lo
 pela linha de comando em uma cópia local e executar a verificação:
 
 ```sh
-flutter pub add --dev architecture_linter
-dart run architecture_linter:analyzer analyze lib --set-exit-on-severity-level=warning
+flutter pub add --dev import_lint
+dart run import_lint
 ```
 
-As regras ficam em `analysis_options.yaml`. A verificação retorna falha quando
-encontra uma dependência proibida, tanto localmente quanto no pipeline.
+As regras ficam em `analysis_options.yaml`. O `import_lint` retorna falha
+quando encontra uma dependência proibida, tanto localmente quanto no pipeline.

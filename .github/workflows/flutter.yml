@@ -69,7 +69,7 @@ jobs:
         run: flutter pub get
 
       - name: Verificar conformidade das camadas
-        run: dart run architecture_linter:analyzer analyze lib --set-exit-on-severity-level=warning
+        run: dart run import_lint
 
       - name: Detectar Code Smells com Dart Analyzer
         run: dart analyze --fatal-warnings
