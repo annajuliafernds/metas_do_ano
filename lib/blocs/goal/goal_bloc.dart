@@ -15,9 +15,9 @@ class GoalBloc extends Bloc<GoalEvent, GoalState> {
       try {
         final goals = await repo.getAll();  // Busca todas as metas
         emit(GoalLoaded(goals));            // Emite estado com metas carregadas
-      } catch (err) {
-        emit(GoalError(err.toString()));   // Emite estado de erro em caso de falha
-      }
+      } on Exception catch (err) {
+  emit(GoalError(err.toString()));
+}
     });
 
     // Evento AddGoal: adiciona uma nova meta e recarrega a lista
