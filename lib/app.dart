@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'utils/constants.dart';
-import 'data/db_helper.dart';
-import 'data/goal_repository.dart';
-import 'blocs/goal/goal_bloc.dart';
-import 'blocs/goal/goal_event.dart';
-import 'screens/home_screen.dart';
+import 'package:metas_do_ano/utils/constants.dart';
+import 'package:metas_do_ano/data/db_helper.dart';
+import 'package:metas_do_ano/data/goal_repository.dart';
+import 'package:metas_do_ano/blocs/goal/goal_bloc.dart';
+import 'package:metas_do_ano/blocs/goal/goal_event.dart';
+import 'package:metas_do_ano/screens/home_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primaryColor: colorLilac,
             scaffoldBackgroundColor: Colors.white,
-            appBarTheme: AppBarTheme(
+            appBarTheme: const AppBarTheme(
               backgroundColor: colorLilac,
               elevation: 0,
               centerTitle: true,
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ),
-          home: HomeScreen(),
+          home: const HomeScreen(),
         ),
       ),
     );

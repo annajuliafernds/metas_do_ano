@@ -1,10 +1,9 @@
-
 import 'package:flutter/material.dart';
-import 'add_edit_goal_screen.dart';
-import '../models/goal.dart';
+import 'package:metas_do_ano/screens/add_edit_goal_screen.dart';
+import 'package:metas_do_ano/models/goal.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../blocs/goal/goal_bloc.dart';
-import '../blocs/goal/goal_event.dart';
+import 'package:metas_do_ano/blocs/goal/goal_bloc.dart';
+import 'package:metas_do_ano/blocs/goal/goal_event.dart';
 
 class GoalDetailScreen extends StatelessWidget {
   final Goal goal;
@@ -15,8 +14,8 @@ class GoalDetailScreen extends StatelessWidget {
     return ElevatedButton.styleFrom(
       backgroundColor: color,
       foregroundColor: Colors.white,
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
     );
   }
 
@@ -24,61 +23,60 @@ class GoalDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detalhes da Meta'),
+        title: const Text('Detalhes da Meta'),
         backgroundColor: Colors.purple,
       ),
       body: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               goal.title,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             if (goal.description != null && goal.description!.isNotEmpty)
               Text(
                 goal.description!,
-                style: TextStyle(fontSize: 16, color: Colors.black87),
+                style: const TextStyle(fontSize: 16, color: Colors.black87),
               ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               children: [
                 Icon(Icons.flag, size: 20, color: Colors.grey[700]),
-                SizedBox(width: 6),
+                const SizedBox(width: 6),
                 Text(
                   'Status: ${goal.status.replaceAll('_', ' ')}',
-                  style: TextStyle(fontSize: 16),
+                  style: const TextStyle(fontSize: 16),
                 ),
               ],
             ),
             if (goal.targetDate != null) ...[
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Row(
                 children: [
-                  Icon(Icons.calendar_today,
-                      size: 20, color: Colors.grey[700]),
-                  SizedBox(width: 6),
+                  Icon(Icons.calendar_today, size: 20, color: Colors.grey[700]),
+                  const SizedBox(width: 6),
                   Text(
                     'Prazo: ${goal.targetDate!.toLocal().toString().split(' ')[0]}',
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                   ),
                 ],
               ),
             ],
-            Spacer(),
+            const Spacer(),
             Row(
               children: [
                 Expanded(
                   child: ElevatedButton.icon(
-                    icon: Icon(Icons.edit),
-                    label: Text('Editar'),
+                    icon: const Icon(Icons.edit),
+                    label: const Text('Editar'),
                     style: _buttonStyle(Colors.blueAccent),
                     onPressed: () async {
                       await Navigator.push(
                         context,
-                        MaterialPageRoute(
+                        MaterialPageRoute<void>(
                           builder: (_) => AddEditGoalScreen(goal: goal),
                         ),
                       );
@@ -89,11 +87,11 @@ class GoalDetailScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 Expanded(
                   child: ElevatedButton.icon(
-                    icon: Icon(Icons.check_circle),
-                    label: Text('Concluir'),
+                    icon: const Icon(Icons.check_circle),
+                    label: const Text('Concluir'),
                     style: _buttonStyle(Colors.green),
                     onPressed: () {
                       final updated = Goal(

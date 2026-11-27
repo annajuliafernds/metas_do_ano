@@ -1,6 +1,6 @@
-import '../models/goal.dart';
-import 'db_helper.dart';
-import 'api_service.dart';
+import 'package:metas_do_ano/data/api_service.dart';
+import 'package:metas_do_ano/data/db_helper.dart';
+import 'package:metas_do_ano/models/goal.dart';
 
 class GoalRepository {
   final DBHelper db;
@@ -12,21 +12,29 @@ class GoalRepository {
 
   Future<Goal> add(Goal g) async {
     final created = await db.createGoal(g);
+
     if (api != null) {
       try {
         await api!.syncGoal(created);
-      } catch (_) {}
+      } on Exception {
+        // A falha na sincronização não impede a operação local.
+      }
     }
+
     return created;
   }
 
   Future<int> update(Goal g) async {
     final res = await db.updateGoal(g);
+
     if (api != null) {
       try {
         await api!.syncGoal(g);
-      } catch (_) {}
+      } on Exception {
+        // A falha na sincronização não impede a operação local.
+      }
     }
+
     return res;
   }
 

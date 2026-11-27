@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../models/goal.dart';
-import '../blocs/goal/goal_bloc.dart';
-import '../blocs/goal/goal_event.dart';
+import 'package:metas_do_ano/models/goal.dart';
+import 'package:metas_do_ano/blocs/goal/goal_bloc.dart';
+import 'package:metas_do_ano/blocs/goal/goal_event.dart';
 
 class AddEditGoalScreen extends StatefulWidget {
   final Goal? goal; // Recebe uma meta para edição, ou null para criação
@@ -41,7 +41,7 @@ class _AddEditGoalScreenState extends State<AddEditGoalScreen> {
         backgroundColor: Colors.purple,
       ),
       body: Padding(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         child: Form(
           key: _formKey, // Vincula o formulário para validação
           child: Column(
@@ -49,24 +49,24 @@ class _AddEditGoalScreenState extends State<AddEditGoalScreen> {
               // Campo de texto para o título da meta
               TextFormField(
                 controller: _titleCtrl,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Título',
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                 ),
                 validator: (v) =>
                     (v == null || v.trim().isEmpty) ? 'Digite um título' : null,
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               // Campo de texto para a descrição, permite várias linhas e é opcional
               TextFormField(
                 controller: _descCtrl,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Descrição (opcional)',
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                 ),
                 maxLines: 3,
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Row(
                 children: [
                   // Dropdown para escolher o status da meta
@@ -74,25 +74,26 @@ class _AddEditGoalScreenState extends State<AddEditGoalScreen> {
                     child: DropdownButtonFormField<String>(
                       initialValue: _status,
                       items: [
-                        DropdownMenuItem(
-                            value: 'em_andamento', child: Text('Em andamento')),
-                        DropdownMenuItem(
-                            value: 'concluida', child: Text('Concluída')),
-                        DropdownMenuItem(
+                        const DropdownMenuItem(
+                            value: 'em_andamento',
+                            child: const Text('Em andamento')),
+                        const DropdownMenuItem(
+                            value: 'concluida', child: const Text('Concluída')),
+                        const DropdownMenuItem(
                             value: 'nao_realizada',
-                            child: Text('Não realizada')),
+                            child: const Text('Não realizada')),
                       ],
                       onChanged: (v) => setState(() => _status = v!),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Status',
-                        border: OutlineInputBorder(),
+                        border: const OutlineInputBorder(),
                       ),
                     ),
                   ),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   // Botão para selecionar a data do prazo
                   ElevatedButton.icon(
-                    icon: Icon(Icons.calendar_today),
+                    icon: const Icon(Icons.calendar_today),
                     label: Text(
                       _target == null
                           ? 'Selecionar prazo'
@@ -101,23 +102,25 @@ class _AddEditGoalScreenState extends State<AddEditGoalScreen> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blueAccent,
                       foregroundColor: Colors.white,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 14),
                     ),
                     onPressed: () async {
                       // Abre o seletor de datas
                       final d = await showDatePicker(
                         context: context,
                         initialDate: _target ?? DateTime.now(),
-                        firstDate: DateTime.now().subtract(Duration(days: 365)),
-                        lastDate: DateTime.now().add(Duration(days: 365 * 5)),
+                        firstDate:
+                            DateTime.now().subtract(const Duration(days: 365)),
+                        lastDate:
+                            DateTime.now().add(const Duration(days: 365 * 5)),
                       );
                       if (d != null) setState(() => _target = d);
                     },
                   )
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               // Botão para salvar ou criar a meta, ocupa toda a largura
               SizedBox(
                 width: double.infinity,
@@ -125,12 +128,13 @@ class _AddEditGoalScreenState extends State<AddEditGoalScreen> {
                   icon: Icon(isEdit ? Icons.save : Icons.add_task),
                   label: Text(
                     isEdit ? 'Salvar Alterações' : 'Criar Nova Meta',
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                   ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
                     foregroundColor: Colors.white,
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 16),
                   ),
                   onPressed: () {
                     // Valida o formulário antes de prosseguir

@@ -1,12 +1,13 @@
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../blocs/goal/goal_bloc.dart';
-import '../blocs/goal/goal_event.dart';
-import '../blocs/goal/goal_state.dart';
-import '../widgets/goal_tile.dart';
-import 'add_edit_goal_screen.dart';
-import 'goal_detail_screen.dart';
+import 'package:metas_do_ano/blocs/goal/goal_bloc.dart';
+import 'package:metas_do_ano/blocs/goal/goal_event.dart';
+import 'package:metas_do_ano/blocs/goal/goal_state.dart';
+import 'package:metas_do_ano/screens/add_edit_goal_screen.dart';
+import 'package:metas_do_ano/screens/goal_detail_screen.dart';
+import 'package:metas_do_ano/widgets/goal_tile.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,28 +17,28 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // Índice para controlar qual filtro está selecionado
-  // (0 = em andamento, 1 = concluída, 2 = não realizada)
+  // Índice para controlar qual filtro está selecionado.
+  // 0 = em andamento, 1 = concluída, 2 = não realizada.
   int _selectedIndex = 0;
 
-  // Lista com os nomes dos status usados para filtrar as metas
+  // Lista com os nomes dos status usados para filtrar as metas.
   final tabs = ['em_andamento', 'concluida', 'nao_realizada'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Metas do Ano'),
+        title: const Text('Metas do Ano'),
         backgroundColor: Colors.purple,
       ),
       body: Padding(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         child: Column(
           children: [
-            // Linha com título e botão para adicionar uma nova meta
+            // Linha com título e botão para adicionar uma nova meta.
             Row(
               children: [
-                Expanded(
+                const Expanded(
                   child: Text(
                     'Minhas metas',
                     style: TextStyle(
@@ -47,16 +48,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 ElevatedButton.icon(
-                  icon: Icon(Icons.add),
-                  label: Text('Adicionar Meta'),
+                  icon: const Icon(Icons.add),
+                  label: const Text('Adicionar Meta'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
                     foregroundColor: Colors.white,
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       horizontal: 16,
                       vertical: 12,
                     ),
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
@@ -65,25 +66,25 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   onPressed: () async {
-                    // Navega para a tela de criação/edição de metas
+                    // Navega para a tela de criação/edição de metas.
                     await Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (_) => AddEditGoalScreen(),
+                      MaterialPageRoute<void>(
+                        builder: (_) => const AddEditGoalScreen(),
                       ),
                     );
 
                     if (!context.mounted) return;
 
-                    // Recarrega as metas após voltar
+                    // Recarrega as metas após voltar.
                     context.read<GoalBloc>().add(LoadGoals());
                   },
                 ),
               ],
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
 
-            // Botões para filtrar metas pelo status
+            // Botões para filtrar metas pelo status.
             ToggleButtons(
               isSelected: [
                 _selectedIndex == 0,
@@ -91,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 _selectedIndex == 2,
               ],
               onPressed: (idx) {
-                // Atualiza o filtro selecionado
+                // Atualiza o filtro selecionado.
                 setState(() => _selectedIndex = idx);
               },
               borderRadius: BorderRadius.circular(10),
@@ -100,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.black87,
               selectedBorderColor: Colors.purple,
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: 12,
                     vertical: 8,
@@ -110,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(fontSize: 14),
                   ),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: 12,
                     vertical: 8,
@@ -120,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(fontSize: 14),
                   ),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: 12,
                     vertical: 8,
@@ -132,14 +133,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
 
-            // Lista de metas que ocupa o restante da tela
+            // Lista de metas que ocupa o restante da tela.
             Expanded(
               child: BlocBuilder<GoalBloc, GoalState>(
                 builder: (context, state) {
                   if (state is GoalLoading) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   }
@@ -151,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
 
                   if (state is GoalLoaded) {
-                    // Filtra as metas pelo status selecionado
+                    // Filtra as metas pelo status selecionado.
                     final filtered = state.goals
                         .where(
                           (g) => g.status == tabs[_selectedIndex],
@@ -159,12 +160,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         .toList();
 
                     if (filtered.isEmpty) {
-                      return Center(
+                      return const Center(
                         child: Text('Nenhuma meta aqui. Crie uma!'),
                       );
                     }
 
-                    // Lista com as metas filtradas
+                    // Lista com as metas filtradas.
                     return ListView.builder(
                       itemCount: filtered.length,
                       itemBuilder: (_, idx) {
@@ -173,42 +174,44 @@ class _HomeScreenState extends State<HomeScreen> {
                         return GoalTile(
                           goal: g,
                           onTap: () async {
-                            // Navega para os detalhes da meta
+                            // Navega para os detalhes da meta.
                             await Navigator.push(
                               context,
-                              MaterialPageRoute(
+                              MaterialPageRoute<void>(
                                 builder: (_) => GoalDetailScreen(goal: g),
                               ),
                             );
 
                             if (!context.mounted) return;
 
-                            // Recarrega as metas após voltar
+                            // Recarrega as metas após voltar.
                             context.read<GoalBloc>().add(LoadGoals());
                           },
                           onLongPress: () {
-                            // Diálogo para confirmar exclusão da meta
-                            showDialog(
-                              context: context,
-                              builder: (_) => AlertDialog(
-                                title: Text('Deletar meta?'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context),
-                                    child: Text('Cancelar'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {
-                                      // Envia evento para deletar a meta
-                                      context
-                                          .read<GoalBloc>()
-                                          .add(DeleteGoal(g.id!));
+                            // Diálogo para confirmar exclusão da meta.
+                            unawaited(
+                              showDialog<void>(
+                                context: context,
+                                builder: (_) => AlertDialog(
+                                  title: const Text('Deletar meta?'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(context),
+                                      child: const Text('Cancelar'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        // Envia evento para deletar a meta.
+                                        context
+                                            .read<GoalBloc>()
+                                            .add(DeleteGoal(g.id!));
 
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text('Deletar'),
-                                  ),
-                                ],
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text('Deletar'),
+                                    ),
+                                  ],
+                                ),
                               ),
                             );
                           },
@@ -217,7 +220,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   }
 
-                  return SizedBox();
+                  return const SizedBox();
                 },
               ),
             ),
