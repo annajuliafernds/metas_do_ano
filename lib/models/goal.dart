@@ -33,8 +33,9 @@ class Goal {
       description: map['description'] as String?,
       status: map['status'] as String? ?? 'em_andamento',
       createdAt: DateTime.parse(map['createdAt'] as String),
-      targetDate:
-          map['targetDate'] != null ? DateTime.parse(map['targetDate']) : null,
+      targetDate: map['targetDate'] != null
+          ? DateTime.parse(map['targetDate'] as String)
+          : null,
     );
   }
 }

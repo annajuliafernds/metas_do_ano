@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:metas_do_ano/screens/add_edit_goal_screen.dart';
 import 'package:metas_do_ano/models/goal.dart';
@@ -57,8 +56,7 @@ class GoalDetailScreen extends StatelessWidget {
               const SizedBox(height: 8),
               Row(
                 children: [
-                  Icon(Icons.calendar_today,
-                      size: 20, color: Colors.grey[700]),
+                  Icon(Icons.calendar_today, size: 20, color: Colors.grey[700]),
                   const SizedBox(width: 6),
                   Text(
                     'Prazo: ${goal.targetDate!.toLocal().toString().split(' ')[0]}',
@@ -78,9 +76,9 @@ class GoalDetailScreen extends StatelessWidget {
                     onPressed: () async {
                       await Navigator.push(
                         context,
-                    MaterialPageRoute<void>(
-                      builder: (_) => AddEditGoalScreen(goal: goal),
-                    ),
+                        MaterialPageRoute<void>(
+                          builder: (_) => AddEditGoalScreen(goal: goal),
+                        ),
                       );
 
                       if (!context.mounted) return;

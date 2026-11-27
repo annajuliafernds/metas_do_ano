@@ -75,7 +75,8 @@ class _AddEditGoalScreenState extends State<AddEditGoalScreen> {
                       initialValue: _status,
                       items: [
                         const DropdownMenuItem(
-                            value: 'em_andamento', child: const Text('Em andamento')),
+                            value: 'em_andamento',
+                            child: const Text('Em andamento')),
                         const DropdownMenuItem(
                             value: 'concluida', child: const Text('Concluída')),
                         const DropdownMenuItem(
@@ -101,16 +102,18 @@ class _AddEditGoalScreenState extends State<AddEditGoalScreen> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blueAccent,
                       foregroundColor: Colors.white,
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 14),
                     ),
                     onPressed: () async {
                       // Abre o seletor de datas
                       final d = await showDatePicker(
                         context: context,
                         initialDate: _target ?? DateTime.now(),
-                        firstDate: DateTime.now().subtract(const Duration(days: 365)),
-                        lastDate: DateTime.now().add(const Duration(days: 365 * 5)),
+                        firstDate:
+                            DateTime.now().subtract(const Duration(days: 365)),
+                        lastDate:
+                            DateTime.now().add(const Duration(days: 365 * 5)),
                       );
                       if (d != null) setState(() => _target = d);
                     },
@@ -130,7 +133,8 @@ class _AddEditGoalScreenState extends State<AddEditGoalScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
                     foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 16),
                   ),
                   onPressed: () {
                     // Valida o formulário antes de prosseguir
