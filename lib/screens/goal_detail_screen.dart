@@ -78,9 +78,9 @@ class GoalDetailScreen extends StatelessWidget {
                     onPressed: () async {
                       await Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (_) => AddEditGoalScreen(goal: goal),
-                        ),
+                    MaterialPageRoute<void>(
+                      builder: (_) => AddEditGoalScreen(goal: goal),
+                    ),
                       );
 
                       if (!context.mounted) return;

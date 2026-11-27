@@ -68,9 +68,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     // Navega para a tela de criação/edição de metas
                     await Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (_) => AddEditGoalScreen(),
-                      ),
+                  MaterialPageRoute<void>(
+                    builder: (_) => const AddEditGoalScreen(),
+                  ),
                     );
 
                     if (!context.mounted) return;
@@ -176,9 +176,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             // Navega para os detalhes da meta
                             await Navigator.push(
                               context,
-                              MaterialPageRoute(
-                                builder: (_) => GoalDetailScreen(goal: g),
-                              ),
+                            MaterialPageRoute<void>(
+                              builder: (_) => GoalDetailScreen(goal: g),
+                            ),
                             );
 
                             if (!context.mounted) return;
