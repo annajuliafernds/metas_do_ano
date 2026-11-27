@@ -154,6 +154,9 @@ O fluxo principal funciona da seguinte forma:
 
 Essa organização permite manter a interface, a lógica de negócio e a persistência dos dados separadas.
 
+Consulte a [descrição das camadas da aplicação](docs/architecture/camadas.md)
+para ver os pacotes, classes, responsabilidades e dependências permitidas.
+
 ---
 
 ## 💾 Persistência dos dados
